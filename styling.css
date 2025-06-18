@@ -1,11 +1,24 @@
 
-html, body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+body {
     width: 100vw;
     height: 100vh;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background: #000;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 canvas {
@@ -30,12 +43,14 @@ canvas {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 .menuBtn {
     position: absolute;
-    left: 100px;
-    top: 100px;
+    left: 8%;
+    top: 15%;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -234,6 +249,8 @@ canvas {
     z-index: 99999;
     justify-content: center;
     align-items: center;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 .infoX {
@@ -280,6 +297,8 @@ canvas {
     align-items: center;
     text-align: center;
     padding: 20px;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 .rotateText {
