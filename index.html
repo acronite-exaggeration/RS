@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Rail Shifter</title>
+
+<link rel="stylesheet" href="styling.css">
+
+</head>
+<body>
+
+<canvas id="gameCanvasX" width="1100" height="600" style="display:none;"></canvas>
+<div class="darky" id="dark"></div>
+
+<div id="rotateWarning">
+  <div class="rotateText">Please rotate your device<br>to portrait mode</div>
+</div>
+
+<div id="menu" class="menuX">
+  <div id="menuxBtn" class="menuBtn" style="display:none;">
+    <button id="startBtn" class="btnXX" style="background-color: #007000; border: 5px solid #004400;">GamePlay</button>
+    <button class="btnXX" style="background-color: #002f86; border: 5px solid #002465;" onclick="openInstructionsModal()">Instructions</button>
+    <button class="btnXX" style="background-color: #a90000; border: 5px solid #5d0000;" onclick="storyP()">Story</button>
+    <button class="btnXX" style="background-color: #d7711d; border: 5px solid #8d4002;" onclick="on('about')">About</button>
+    <button class="btnXX" style="background-color: #4800cf; border: 5px solid #190156;" onclick="on('settings')">Settings</button>
+  </div>
+</div>
+
+<div id="settings" class="bords">
+  <div style="display:flex; flex-direction:column; align-items:center; position: absolute; top: 5%; left: 50%; width: 50%; transform: translateX(-50%); gap:15px; background: #333; padding: 20px; border: 10px solid #000; border-radius: 10px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+    <button class="btnXX" style="background-color: #9700c1; border: 5px solid #36005d;" onclick="on('trSkin')">Train Skins</button>
+    <button class="btnXX" style="background-color: #0b9963; border: 5px solid #002819;" onclick="on('speed')">Train Speed</button>
+    <button class="btnXX" style="background-color: #4b00b5; border: 5px solid #1b023f;" onclick="on('mrSkin')">Monster Skins</button>
+    <button class="btnXX" style="background-color: #000cb5; border: 5px solid #02023f;" onclick="on('diff')">Monster Difficulty</button>
+    <button class="btnXX" style="background-color: #83990b; border: 5px solid #1d2800;" onclick="on('bgSkin')">Dimension</button>
+    <button class="btnXX" style="background-color: #990b0b; border: 5px solid #420000;" onclick="on('fpsc')">FPS Meter</button>
+    <button class="inBtn" style="left:2%" onclick="on('reset')">☢️</button>
+    <button class="inBtn" style="right:2%" onclick="off('settings')">❌</button>
+  </div>
+</div>
+
+<div id="bgSkin" class="skinX">
+  <h2 style="font-size: 4rem;">Choose Your Dimension</h2>
+  <div style="display:flex; flex-wrap: wrap; justify-content:center; gap:5%; row-gap:40px;">
+    <img src="bgis/backg000.jpg" rank="1" skin="1" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="bgis/backg111.jpg" rank="2" skin="1" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="bgis/backg222.jpg" rank="3" skin="1" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="bgis/backg333.jpg" rank="4" skin="1" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="bgis/backg444.jpg" rank="5" skin="1" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="bgis/backg-x.jpg" rank="0" skin="4" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+  </div>
+  <button class="inBtn" style="right:2%" onclick="off('bgSkin')">❌</button>
+</div>
+
+<div id="trSkin" class="skinX">
+  <h2 style="font-size: 4rem;">Choose Train Skin</h2>
+  <div style="display:flex; flex-direction: column; gap:30px; align-items:center;">
+    <img src="highs/train-x.png" rank="1" skin="2" onclick="usage(this)" style="width:80%; cursor:pointer; background: #949494;">
+    <img src="highs/train-e.png" rank="2" skin="2" onclick="usage(this)" style="width:80%; cursor:pointer; background: #949494;">
+    <img src="highs/train-x111.png" rank="3" skin="2" onclick="usage(this)" style="width:80%; cursor:pointer; background: #949494;">
+    <img src="highs/train-e111.png" rank="4" skin="2" onclick="usage(this)" style="width:80%; cursor:pointer; background: #949494;">
+    <img src="highs/train-x222.png" rank="5" skin="2" onclick="usage(this)" style="width:80%; cursor:pointer; background: #949494;">
+    <img src="highs/train-e222.png" rank="6" skin="2" onclick="usage(this)" style="width:80%; cursor:pointer; background: #949494;">
+  </div>
+  <button class="inBtn" style="right:2%" onclick="off('trSkin')">❌</button>
+</div>
+
+<div id="mrSkin" class="skinX">
+  <h2 style="font-size: 4rem;">Choose Monster Skin</h2>
+  <div style="display:flex; flex-wrap: wrap; justify-content:center; gap:5%; row-gap:40px;">
+    <img src="highs/monster000.png" rank="1" skin="3" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="highs/monster111.png" rank="2" skin="3" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="highs/monster222.png" rank="3" skin="3" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="highs/monster333.png" rank="4" skin="3" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="highs/monster444.png" rank="5" skin="3" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+    <img src="highs/monster-x.png" rank="6" skin="3" onclick="usage(this)" style="width:45%; cursor:pointer; background: #949494;">
+  </div>
+  <button class="inBtn" style="right:2%" onclick="off('mrSkin')">❌</button>
+</div>
+
+<div id="speed" class="bords">
+  <div class="infoX" style="color:#2165e3;">
+    <h1>Choose the train speed</h1>
+    <h2>More Speed, means Sharp Reflexes...!</h2>
+    <div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
+      <button class="btnXX" style="background:#a9942a; border: 5px solid #564800;" onclick="trEdit(1,7)">Slow</button>
+      <button class="btnXX" style="background:#007f04; border: 5px solid #043c00;" onclick="trEdit(2,7)">Medium</button>
+      <button class="btnXX" style="background:#cd6d00; border: 5px solid #3c2000;" onclick="trEdit(3,7)">Fast</button>
+      <button class="btnXX" style="background:#7f0000; border: 5px solid #3c0000;" onclick="trEdit(4,7)">Extreme</button>
+    </div>
+    <button class="inBtn" style="right:2%" onclick="off('speed')">❌</button>
+  </div>
+</div>
+
+<div id="diff" class="bords">
+  <div class="infoX" style="color:#8a38fd;">
+    <h1>Choose the monster difficulty</h1>
+    <h2>You have to face the monster - No Practice Mode!</h2>
+    <h2>Monster troubles more in greater difficulty...!</h2>
+    <div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
+      <button class="btnXX" style="background:#a9942a; border: 5px solid #564800;" onclick="mrsEdit(1,7)">Easy</button>
+      <button class="btnXX" style="background:#007f04; border: 5px solid #043c00;" onclick="mrsEdit(2,7)">Normal</button>
+      <button class="btnXX" style="background:#cd6d00; border: 5px solid #3c2000;" onclick="mrsEdit(3,7)">Hard</button>
+      <button class="btnXX" style="background:#7f0000; border: 5px solid #3c0000;" onclick="mrsEdit(4,7)">Extreme</button>
+    </div>
+    <button class="inBtn" style="right:2%" onclick="off('diff')">❌</button>
+  </div>
+</div>
+
+<div id="modal" class="bords">
+  <div class="infoX" style="color:#c1c0c0; gap:10px; position:relative;">
+    <h1>📘 Game Instructions</h1>
+
+    <div id="instructionContent" style="min-height: 300px; margin-top: 10px;"></div>
+
+    <button id="previous" class="sphXX" style="bottom:20px; left:20px;" onclick="pastInstruction()">⮜</button>
+    <button id="next" class="sphXX" style="bottom:20px; right:20px;" onclick="nextInstruction()">⮞</button>
+
+    <button class="inBtn" onclick="off('modal')" style="right:2%;">❌</button>
+  </div>
+</div>
+
+<div id="about" class="bords">
+  <div class="infoX" style="color:#d7d7d7;">
+    <h1>👨‍💻 <strong>About the Developer</strong></h1>
+    <h4>This game was designed and developed by <strong>Anthony Masih</strong>.</h4>
+    <h4>Brought to you by <strong>Exaggeration</strong> gaming studio...</h4>
+    <h4>Passionate about games, code, and creativity; Hope you enjoy playing!</h4>
+    <h4>Feel free to share feedback & have fun 🎮</h4>
+    <button class="inBtn" style="right:2%" onclick="off('about')">❌</button>
+  </div>
+</div>
+
+<div id="reset" class="bords">
+  <div class="infoX" style="color:#d00202;">
+    <h1>Reset Game?</h1>
+    <h3>Do you want to reset your checkpoint and start fresh?</h3>
+    <h3>After reset you cannot recover your saved data...!</h3>
+    <div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
+      <button class="btnXX" onclick="delCp(true)" style="background:#a93d2a; border: 5px solid #562400;">Reset</button>
+      <button class="btnXX" onclick="delCp(false)" style="background:#007f04; border: 5px solid #043c00;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="fpsc" class="bords">
+  <div class="infoX" style="color:#d00202;">
+    <h1>FPS Meter</h1>
+    <h3>Want to enable or disable FPS counter?</h3>
+    <h3>You will be able to see FPS during gameplay...!</h3>
+    <div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
+      <button class="btnXX" style="background:#007f04; border: 5px solid #043c00;" onclick="showFPS()">Enable</button>
+      <button class="btnXX" style="background:#a93d2a; border: 5px solid #562400;" onclick="hideFPS()">Disable</button>
+    </div>
+  </div>
+</div>
+
+<div id="endu" class="bords">
+  <div class="infoX" style="color:#ff0000;">
+    <h2>Thanks for playing. . .</h2>
+    <p>Please share a feedback and visit again later!</p>
+    <div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
+      <button id="enduBtn" class="btnXX" onclick="location.reload()" style="display:none; background:#a93d2a; border: 5px solid #562400;">Menu</button>
+    </div>
+  </div>
+</div>
+
+<div id="gameOver" style="display:none; flex-direction: column; font-size: 2rem; position: absolute; top:0; left:0; width:100%; height:100%; align-items:center; gap:15px; padding-top:10%; background:rgb(0, 0, 0); color:rgb(184, 0, 0); font-family: sans-serif;">
+  <div id="gameReason">GAME OVER</div>
+  <button class="btnXX" style="background-color: #d7991d; border: 5px solid #8d6802;" onclick="location.reload()">Menu</button>
+  <button id="continueBtn" class="btnXX" style="background-color: #007000; border: 5px solid #004400;" onclick="conCp()">Continue</button>
+  <button class="btnXX" style="background-color: #a90000; border: 5px solid #5d0000;" onclick="gEnd()">End</button>
+</div>
+
+<div id="envy" style="display:none;">
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+
+  <div id="score"></div>
+  <div id="runnerScore"></div>
+
+  <div id="trackingContainer">
+    <div id="tracking">🚂</div>
+  </div>
+
+  <button class="sphXX" id="lefter" style="bottom:8%; left:8%;">⮜</button>
+  <button class="sphXX" id="righter" style="bottom:8%; left:21%;">⮞</button>
+
+  <button class="sphXX" style="bottom:8%; right:21%" onclick="collects()">🤑</button>
+  <button class="sphXX" id="switcher" style="bottom:8%; right:8%;">🗘</button>
+
+  <button class="sphXX" id="musicBtn" style="bottom:8%; left:50%; transform:translateX(-50%);" onclick="musicToggle()">🔊</button>
+
+  <button class="sphXX" id="pauser" style="top:8%; right:21%;" onclick="resumePause()">▶</button>
+  <button class ="sphXX" id="sideBy" style="top:8%; right:8%;">☰</button>
+</div>
+
+<div id="sidebar" style="transform: translateX(-50%);">
+  <button class="btnXX" style="background-color: #007000; border: 5px solid #004400;" onclick="taskResume()">RESUME</button>
+  <button class="btnXX" style="background-color: #d7711d; border: 5px solid #8d4002;" onclick="location.reload()">MAIN MENU</button>
+  <button class="btnXX" style="background-color: #002f86; border: 5px solid #002465;" onclick="openInstructionsModal()">INSTRUCTIONS</button>
+  <button class="btnXX" style="background-color: #a90000; border: 5px solid #5d0000;" onclick="gEnd()">END</button>
+</div>
+
+<audio id="backgroundMusic" loop>
+  <source src="dkkd.mp3" type="audio/mpeg">
+</audio>
+
+<div id="storie" width="100%" height="100%" style="display:none">
+  <video id="storyVideo" width="100%" height="100%" autoplay>
+    <source src="story.mp4" type="video/mp4"></source>
+  </video>
+  <button onclick="storyE()" class="btnXX" style="position: absolute; top: 3%; right: 2%; border: 4px solid #a90000; background-color: rgb(55, 54, 54); color: rgb(255, 0, 0);">SKIP</button>  
+</div>
+
+<button id="advance" onclick="adv()">ADVANCE</button>
+
+<script src="loaders.js"></script>
+
+<script src="ui.js"></script>
+
+<script src="effects.js"></script>
+
+<script src="object.js"></script>
+
+<script src="main.js"></script>
+
+</body>
+</html>
