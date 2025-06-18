@@ -13,8 +13,6 @@ canvas {
     margin: 0;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vw;
 }
 
 #gameCanvasX.blur {
@@ -37,7 +35,7 @@ canvas {
 .menuBtn {
     position: absolute;
     left: 100px;
-    top: 200px;
+    top: 100px;
     display: flex;
     flex-direction: column;
     gap: 15px;
